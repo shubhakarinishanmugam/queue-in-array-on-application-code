@@ -1,0 +1,121 @@
+import java.util.*;
+class queue //array implementation
+{
+    int size;
+    int arr[];
+    int front;
+    int rear;
+    queue(int s)
+    {
+        size=s;
+        front=0;
+        rear=0;
+        arr=new int[s];
+    }
+    
+    boolean isempty()
+    {
+        return (front==0&&rear==0);
+    }
+    boolean isfull()
+    {
+        return rear==size;
+    }
+    
+    void enqueue(int d)
+    {
+        if(isfull())
+        {
+            System.out.println("SORRY *Queue is full* YOU CAN'T INSERT ANYMORE");
+        }
+        else
+        {
+            arr[rear]=d;
+            rear++;
+        }
+        return;
+    }
+    
+    int dequeue()
+    {
+        if(isempty())
+        {
+            System.out.println("SORRY! *Queue is empty* YOU CAN'T DELETE ANYMORE");
+            return Integer.MIN_VALUE;
+        }
+        else
+        {
+            int d=arr[front];
+            for(int i=0;i<rear-1;i++)
+            {
+            arr[i]=arr[i+1];
+            }
+            rear--;
+            arr[rear]=0;
+            return d;
+        }
+    }
+    
+    void display()
+    {
+        if(isempty())
+        {
+            System.out.println("SORRY! *Queue is empty* YOU CAN'T DELETE ANYMORE");
+        } 
+        else
+        {
+            for(int i=front;i<rear;i++)
+            System.out.print(arr[i]+" ");
+            System.out.println("\n");
+        }
+    }
+}
+
+
+public class Main 
+{
+    public static void main(String args[])
+    {
+        queue q1=new queue(6);
+        Scanner scanner=new Scanner(System.in);
+        System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n^        * WELCOME TO QUEUE OPERATIONS *          ^\n^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
+            
+       
+
+while (true) {
+
+            
+            System.out.println("1. ENQUEUE");
+            System.out.println("2. DEQUEUE");
+
+            System.out.println("3. DISPLAY");
+            System.out.println("4. EXIT");
+            System.out.print("Enter your choice: ");
+            int choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter the value to enqueue: ");
+                    int value = scanner.nextInt();
+                    q1.enqueue(value);
+                    break;
+                case 2:
+                    int deletedValue = q1.dequeue();
+                    if (deletedValue != Integer.MIN_VALUE) {
+                        System.out.println("Deleted value: " + deletedValue);
+                    }
+                    break;
+                case 3:
+                    q1.display();
+                    break;
+                case 4:
+                    System.out.println("Exiting...");
+                    System.out.println("THANK YOU !!!");
+                    scanner.close();
+                    System.exit(0);
+                default:
+                    System.out.println("Invalid choice. Kindly try again.");
+            System.out.println("THANK YOU!!!");}
+        }
+    }
+}
